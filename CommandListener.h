@@ -23,6 +23,7 @@
 #include "TetherController.h"
 #include "NatController.h"
 #include "PppController.h"
+#include "PanController.h"
 #include "SoftapController.h"
 #include "BandwidthController.h"
 #include "IdletimerController.h"
@@ -35,6 +36,7 @@ class CommandListener : public FrameworkListener {
     static TetherController *sTetherCtrl;
     static NatController *sNatCtrl;
     static PppController *sPppCtrl;
+    static PanController *sPanCtrl;
     static SoftapController *sSoftapCtrl;
     static BandwidthController *sBandwidthCtrl;
     static IdletimerController *sIdletimerCtrl;
@@ -99,6 +101,13 @@ private:
     public:
         PppdCmd();
         virtual ~PppdCmd() {}
+        int runCommand(SocketClient *c, int argc, char ** argv);
+    };
+
+    class PanCmd : public NetdCommand {
+    public:
+        PanCmd();
+        virtual ~PanCmd() {}
         int runCommand(SocketClient *c, int argc, char ** argv);
     };
 
